@@ -16,22 +16,27 @@ A RESTful API means a resource based design. All requests refer to a resource in
 To create a new workout, send a POST request to the ``/workouts`` url with a JSON body containing te required parameters. This is called a factory resource in that it creates the resources it names.
 
     POST /api/v1/workouts
-    {
-        "workout_template_uid": "Lti9",
-        "date": 20120315,
-        "time": 0530,
-        "duration": "2hrs"
-    }
+
+```javascript
+{
+    "workout_template_uid": "Lti9",
+    "date": 20120315,
+    "time": 0530,
+    "duration": "2hrs"
+}
+```
 
 If the request succeeded a HTTP response code of 204 - Created is returned with a JSON body containing a representation of the new resource:
 
-    {
-        "uid": "32Je",
-        "date": 20120315,
-        "time": 0530,
-        "duration": "2hrs"
-        "url": "/api/v1/workouts/32Je"
-    }
+```javascript
+{
+    "uid": "32Je",
+    "date": 20120315,
+    "time": 0530,
+    "duration": "2hrs"
+    "url": "/api/v1/workouts/32Je"
+}
+```
 
 One important thing to note here is the ``url`` parameter. This "self-traversing url" is a reference to the new resource. All new resources will contain this parameter. It allows client services to refer back to the resource with little or no knowledge of the system. If this resource contained sub-resources, a factory resource url would also be inclueded to allow creation of a sub-resource.
 
@@ -51,21 +56,31 @@ A Program instance resource represents a training program for an athlete. Extend
 As an athlete, I want to train for a marathon, so that I can qualify for the Boston Marathon.
 
 Given I have a User account
-    and I am logged in
+
+    * and I am logged in
+    
 When I request a new program with the following data:
+
+```    
     name = Boston Training
     start = December 2012
     end = April 2013
     goal = Boston Marathon
+```
+
 Then I should receive a successful respnse
-    and it should contain the following data:
-        {
-            "uid": <uid>
-            "name": "Boston Training"
-            "start": "201212"
-            "end": 201304
-            "goal": "Boston Marathon"
-        }
+
+    * and it should contain the following data:
+
+```javascript
+{
+    "uid": <uid>
+    "name": "Boston Training"
+    "start": "201212"
+    "end": 201304
+    "goal": "Boston Marathon"
+}
+```
 
 #### Resource Properties
 <table>
@@ -84,9 +99,11 @@ Then I should receive a successful respnse
 </table>
 
 #### Example CURL Call
-curl -d '' -H 'X-Auth-Token: <access_token>' 'http://api.rs.com/api/v1/programs'
+``curl -d '' -H 'X-Auth-Token: <access_token>' 'http://api.rs.com/api/v1/programs'``
 
 #### Example JSON Response
+
+```javascript
 {
     "uid": "cYUF",
     "name": "Boston Training"
@@ -94,6 +111,7 @@ curl -d '' -H 'X-Auth-Token: <access_token>' 'http://api.rs.com/api/v1/programs'
     "end": 201304
     "goal": "Boston Marathon"
 }
+```
 
 ### Activity Template
 Defines the basic unit of exercise, e.g., running or strength training.
