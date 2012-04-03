@@ -96,7 +96,44 @@ curl -d '' -H 'X-Auth-Token: <access_token>' 'http://api.rs.com/api/v1/programs'
 }
 
 ### Activity Template
-Defines the basic unit of exercise, e.g., running or strength training.
+An ActivityTemplate instance resource represents a basic unit of exercise and how it is done, e.g., a tempo run or maintainence strength training. It is the resource by which the coach defines how their workouts are to be done.
+
+##### Use Cases Satisified
+As a coach, I want to define a fartlek workout, so that my athletes can perform them in workouts.
+
+##### Resource Properties
+<table>
+    <thead>
+        <tr>
+            <th align="left">Property</th>
+            <th align="left">Description</th>
+            </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td align="left">uid</td>
+            <td align="left">A 4 character string that uniquely identifies this resource.</td>
+        </tr>
+        <tr>
+            <td align="left">name</td>
+            <td align="left">A unicode string that names the activity.</td>
+        </tr>
+        <tr>
+            <td align="left">description</td>
+            <td align="left">A unicode string description of the activity.</td>
+        </tr>
+    </tbody>
+</table>
+
+#### Example CURL Call
+curl -d '' -H 'X-Auth-Token: <access_token>' 'http://api.rs.com/api/v1/activity_templates'
+
+#### Example JSON Response
+{
+    "uid": "FAMW",
+    "name": "Tempo Run",
+    "description": "Run performed in a progressing manner such that the beginning is easy and the middle approaches goal race pace. The tempo portion is held for some time before tapering back down and finishing easy."
+}
 
 ### Activity
 Defines an instance of an activity with a particular date, time and length. For example, Run 5 miles on 3/15/2012 or Swim 1600m at 5:30 am.
@@ -106,3 +143,6 @@ Defines how to perform workouts and why they are done. For example, a tempo run 
 
 ### Workout
 Defines an association of activities (what) and workout templates (how).
+
+# TODO: Workout vs. Activity
+Workout are defined variably - distance/time and date/day of week. Run 5 miles Monday(s). Swim 1 hr on 4/2/2012. Same resource.

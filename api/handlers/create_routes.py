@@ -5,4 +5,4 @@ This module must be imported at initialization time.
 
 """
 
-from api.handlers import activities_handler
+from api.handlers import workouts_handler
