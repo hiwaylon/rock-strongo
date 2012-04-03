@@ -26,7 +26,7 @@ To create a new workout, send a POST request to the ``/workouts`` url with a JSO
 }
 ```
 
-If the request succeeded a HTTP response code of 204 - Created is returned with a JSON body containing a representation of the new resource:
+If the request succeeded a HTTP response code of 201 - Created is returned with a JSON body containing a representation of the new resource:
 
 ```javascript
 {
@@ -41,13 +41,6 @@ If the request succeeded a HTTP response code of 204 - Created is returned with 
 One important thing to note here is the ``url`` parameter. This "self-traversing url" is a reference to the new resource. All new resources will contain this parameter. It allows client services to refer back to the resource with little or no knowledge of the system. If this resource contained sub-resources, a factory resource url would also be inclueded to allow creation of a sub-resource.
 
 ## Resources
-*Template: A <Resource> instance resource represents a <long description>.*
-
-### Athlete (User?)
-#### Use Case Satisfied
-#### Resource Properties
-#### Example CURL Call
-#### Example JSON Response
 
 ### Program
 A Program instance resource represents a training program for an athlete. Extending over a period of time and culminating with a goal it is the resource under which most other resources are based.
@@ -61,7 +54,7 @@ Given I have a User account
     
 When I request a new program with the following data:
 
-```    
+```
     name = Boston Training
     start = December 2012
     end = April 2013
@@ -77,7 +70,7 @@ Then I should receive a successful respnse
     "uid": <uid>
     "name": "Boston Training"
     "start": "201212"
-    "end": 201304
+    "end": "201304"
     "goal": "Boston Marathon"
 }
 ```
@@ -99,7 +92,10 @@ Then I should receive a successful respnse
 </table>
 
 #### Example CURL Call
-``curl -d '' -H 'X-Auth-Token: <access_token>' 'http://api.rs.com/api/v1/programs'``
+
+```bash
+curl -d '' -H 'X-Auth-Token: <access_token>' 'http://api.rs.com/api/v1/programs'
+```
 
 #### Example JSON Response
 
@@ -157,15 +153,21 @@ As a runner, I want to perform speed workouts so that I can increase my speed on
 </table>
 
 #### Example CURL Call
+
+```bash
 curl -d '' -H 'X-Auth-Token: <access_token>' 'http://api.rs.com/api/v1/programs/cYUF/workouts'
+```
 
 #### Example JSON Response
+
+```javascript
 {
     "uid": "CFTv",
     "description": "Aerobic run. Nice and easy, stay aerobic!",
     "date": "2012-04-04",
     "workout_template_uid": "44d6"
 }
+```
 
 ### Activity Template
 An ActivityTemplate instance resource represents a basic unit of exercise and how it is done, e.g., a tempo run or maintainence strength training. It is the resource by which the coach defines how their workouts are to be done.
@@ -212,3 +214,11 @@ Defines an instance of an activity with a particular date, time and length. For 
 
 # TODO: Workout vs. Activity
 Workout are defined variably - distance/time and date/day of week. Run 5 miles Monday(s). Swim 1 hr on 4/2/2012. Same resource.
+
+*Template: A <Resource> instance resource represents a <long description>.*
+
+### Athlete (User?)
+#### Use Case Satisfied
+#### Resource Properties
+#### Example CURL Call
+#### Example JSON Response
