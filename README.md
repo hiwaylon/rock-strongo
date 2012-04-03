@@ -139,15 +139,14 @@ As a runner, I want to perform speed workouts so that I can increase my speed on
 </table>
 
 #### Example CURL Call
-curl -d '' -H 'X-Auth-Token: <access_token>' 'http://api.rs.com/api/v1/programs'
+curl -d '' -H 'X-Auth-Token: <access_token>' 'http://api.rs.com/api/v1/programs/cYUF/workouts'
 
 #### Example JSON Response
 {
-    "uid": "cYUF",
-    "name": "Boston Training"
-    "start": "201212"
-    "end": 201304
-    "goal": "Boston Marathon"
+    "uid": "CFTv",
+    "description": "Aerobic run. Nice and easy, stay aerobic!",
+    "date": "2012-04-04",
+    "workout_template_uid": "44d6"
 }
 
 ### Activity Template
