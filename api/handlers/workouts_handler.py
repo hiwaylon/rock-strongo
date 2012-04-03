@@ -21,7 +21,9 @@ class WorrkoutsHandler(web.RequestHandler, mixins.ResourceCreationMixin):
         self.write(resource.simple_view())
 
     def _validate_internal(self, request_data):
+        if "description" not in request_data:
+            return False
         return True
 
     def _create_internal(self, request_data):
-        return workout.Workout.create()
+        return workout.Workout.create(request_data["description"])

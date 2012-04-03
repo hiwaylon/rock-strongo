@@ -95,6 +95,61 @@ curl -d '' -H 'X-Auth-Token: <access_token>' 'http://api.rs.com/api/v1/programs'
     "goal": "Boston Marathon"
 }
 
+### Workout Template
+Defines how to perform workouts and why they are done. For example, a tempo run is the template for a specific tempo run done by a particular athlete on a certain date.
+
+### Workout
+A Workout instance resource represents a workout to be performed on a particular date. It contains specific details concerning performing the workout. Its associated template defines the category of workkout it is as well as general details of how and why a workout of its type is performed.
+
+#### Use Case Satisfied
+As a runner, I want to perform speed workouts so that I can increase my speed on race day.
+
+#### Resource Properties
+<table>
+    <thead>
+        <tr>
+            <th align="left">Property</th>
+            <th align="left">Description</th>
+            </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td align="left">uid</td>
+            <td align="left">A 4 character string that uniquely identifies this resource.</td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td align="left">description</td>
+            <td align="left">A unicode string describing the workout in detail.</td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td align="left">date</td>
+            <td align="left">A date in the format YYYY-MM-DD on which the workout should be performed.</td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td align="left">workout_template_uid</td>
+            <td align="left">A 4 character string that uniquely identifies the workout template on which this workout is based.</td>
+        </tr>
+    </tbody>
+</table>
+
+#### Example CURL Call
+curl -d '' -H 'X-Auth-Token: <access_token>' 'http://api.rs.com/api/v1/programs'
+
+#### Example JSON Response
+{
+    "uid": "cYUF",
+    "name": "Boston Training"
+    "start": "201212"
+    "end": 201304
+    "goal": "Boston Marathon"
+}
+
 ### Activity Template
 An ActivityTemplate instance resource represents a basic unit of exercise and how it is done, e.g., a tempo run or maintainence strength training. It is the resource by which the coach defines how their workouts are to be done.
 
@@ -137,12 +192,6 @@ curl -d '' -H 'X-Auth-Token: <access_token>' 'http://api.rs.com/api/v1/activity_
 
 ### Activity
 Defines an instance of an activity with a particular date, time and length. For example, Run 5 miles on 3/15/2012 or Swim 1600m at 5:30 am.
-
-### Workout Template
-Defines how to perform workouts and why they are done. For example, a tempo run is the template for a specific tempo run done by a particular athlete on a certain date.
-
-### Workout
-Defines an association of activities (what) and workout templates (how).
 
 # TODO: Workout vs. Activity
 Workout are defined variably - distance/time and date/day of week. Run 5 miles Monday(s). Swim 1 hr on 4/2/2012. Same resource.

@@ -41,8 +41,8 @@ from api.utils import ids
 
 class Workout(BaseResource):
     @classmethod
-    def create(cls):
-        instance = cls()
+    def create(cls, description):
+        instance = cls(description)
         # TODO: Create an "insert_view" standard? Yes, to uphold encapsulation
         # of the model, i.e. the object itself generates its serializable view.
         _DB.workouts.insert(instance._serializable_view())
@@ -60,12 +60,14 @@ class Workout(BaseResource):
         logger.info("Fetched document (%s).", workout)
         return workout
 
-    def __init__(self):
+    def __init__(self, description):
         self._uid = ids.generate(length=4)
+        self._description = description
 
     def simple_view(self):
         return {
-            "uid": self._uid
+            "uid": self._uid,
+            "description": self._description
         }
 
     def _serializable_view(self):
